@@ -1,13 +1,5 @@
 <?php
 
-/**
- * Задача 6. Реализовать вход администратора с использованием
- * HTTP-авторизации для просмотра и удаления результатов.
- **/
-
-// Пример HTTP-аутентификации.
-// PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
-// Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
@@ -18,17 +10,13 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
     exit();
 }
 
-// Инициализируем переменные для подключения к базе данных.
 $db_user = 'u20983';   // Логин БД
 $db_pass = '3425454';  // Пароль БД
 
-// Подключаемся к базе данных на сервере.
 $db = new PDO('mysql:host=localhost;dbname=u20983', $db_user, $db_pass, array(
     PDO::ATTR_PERSISTENT => true
 ));
 
-// Если метод был POST, значит мы нажали на кнопку удаления.
-// Пробуем удалить запись из базы данных.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         $stmt = $db->prepare('DELETE FROM userProfile WHERE uid = ?');

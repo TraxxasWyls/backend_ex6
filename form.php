@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>
-		Web5
+		Web6
 	</title>
 	<link rel="stylesheet" href="style.css">
 </head>
