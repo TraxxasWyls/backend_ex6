@@ -35,6 +35,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute(array(
             $_POST['remove']
         ));
+        $stmt = $db->prepare('DELETE FROM users WHERE login = ?');
+        $stmt->execute(array(
+            $_POST['remove']
+        ));
     } catch (PDOException $e) {
         echo 'Ошибка: ' . $e->getMessage();
         exit();
@@ -42,7 +46,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 try {
-    $stmt = $db->query('SELECT * FROM users right join userProfile on users.login = userProfile.uid');
+    $stmt = $db->query(
+        'SELECT * FROM users join userProfile on users.login = userProfile.uid as result;
+        ALTER TABLE result DROP COLUMN uid;'
+    );
     ?>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
