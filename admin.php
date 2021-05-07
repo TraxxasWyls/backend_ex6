@@ -19,11 +19,11 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 }
 
 // Инициализируем переменные для подключения к базе данных.
-$db_user = 'u16671';   // Логин БД
-$db_pass = '3137204';  // Пароль БД
+$db_user = 'u20983';   // Логин БД
+$db_pass = '3425454';  // Пароль БД
 
 // Подключаемся к базе данных на сервере.
-$db = new PDO('mysql:host=localhost;dbname=u16671', $db_user, $db_pass, array(
+$db = new PDO('mysql:host=localhost;dbname=u20983', $db_user, $db_pass, array(
     PDO::ATTR_PERSISTENT => true
 ));
 
@@ -31,7 +31,7 @@ $db = new PDO('mysql:host=localhost;dbname=u16671', $db_user, $db_pass, array(
 // Пробуем удалить запись из базы данных.
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
-        $stmt = $db->prepare('DELETE FROM web6 WHERE login = ?');
+        $stmt = $db->prepare('DELETE FROM userProfile WHERE uid = ?');
         $stmt->execute(array(
             $_POST['remove']
         ));
@@ -42,11 +42,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 try {
-    $stmt = $db->query('SELECT * FROM web6');
+    $stmt = $db->query('SELECT * FROM users join userProfile on users.login = userProfile.uid');
     ?>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Админ панель | Задание 6</title>
+        <title>Панель Администратора</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.2/css/bulma.min.css">
         <link rel="stylesheet" href="style.css">
     </head>
