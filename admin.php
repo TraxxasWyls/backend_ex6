@@ -79,7 +79,7 @@ try {
                 foreach ($row as $cell) {
                     print('<td>' . $cell . '</td>');
                 }
-                print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="' . $row['login'] . '">x</button></td>');
+                print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="' . $row['uid'] . '">x</button></td>');
                 print('</tr>');
             }
             ?>
