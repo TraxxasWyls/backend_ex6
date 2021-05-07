@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 try {
     $stmt = $db->query(
-        'SELECT uss.login, uss.pass, us.name, us.email, us.age, us.age,us.sex,us.sex, us.limbs, us.powers, us.bio FROM users uss join userProfile us on users.login = userProfile.uid'
+        'SELECT uss.login, uss.pass, us.name, us.email, us.age, us.sex, us.limbs, us.powers, us.bio FROM users uss join userProfile us on users.login = userProfile.uid'
     );
     ?>
     <head>
