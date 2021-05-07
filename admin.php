@@ -47,8 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 try {
     $stmt = $db->query(
-        'SELECT * FROM users join userProfile on users.login = userProfile.uid as result;
-        ALTER TABLE result DROP COLUMN uid;'
+        'SELECT * FROM userProfile'
     );
     ?>
     <head>
@@ -63,7 +62,6 @@ try {
             <thead>
             <tr>
                 <th>Логин</th>
-                <th>Пароль</th>
                 <th>Имя</th>
                 <th>Email</th>
                 <th>Год гождения</th>
