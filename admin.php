@@ -37,7 +37,7 @@ try {
     $stmt = $db->query(
         'SELECT * FROM userProfile'
     );
-    $stmt = $db->query(
+    $stmt2 = $db->query(
         'SELECT (length(us.powers) - length(replace(us.powers, "tp", "")))/2 as tp
         FROM userProfile us'
     );
