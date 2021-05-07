@@ -38,7 +38,9 @@ try {
         'SELECT * FROM userProfile'
     );
     $stmt2 = $db->query(
-        'SELECT (length(us.powers) - length(replace(us.powers, "tp", "")))/2 as tp
+        'SELECT SUM((length(us.powers) - length(replace(us.powers, "tp", "")))/2),
+            SUM((length(us.powers) - length(replace(us.powers, "vision", "")))/6),
+            SUM((length(us.powers) - length(replace(us.powers, "levit", "")))/5)
         FROM userProfile us'
     );
     ?>
@@ -55,12 +57,6 @@ try {
                     <th>Телепортация</th>
                     <th>Ночное зрение</th>
                     <th>Левитация</th>
-                    <th>Год гождения</th>
-                    <th>Пол</th>
-                    <th>Количество конечностей</th>
-                    <th>Сверхспособности</th>
-                    <th>Биография</th>
-                    <th>Удалить</th>
                 </tr>
             </thead>
             <tbody>
