@@ -35,7 +35,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 try {
     $stmt = $db->query(
-        'SELECT uss.login, uss.pass, us.name, us.email, us.age, us.sex, us.limbs, us.powers, us.bio FROM users uss join userProfile us on users.login = userProfile.uid'
+        'SELECT * FROM userProfile'
+    );
+    $stmt = $db->query(
+        'SELECT (length(us.powers) - length(replace(us.powers, "tp", "")))/2 as tp
+        FROM userProfile us'
     );
     ?>
     <head>
@@ -45,12 +49,37 @@ try {
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <table class="table is-hoverable is-fullwidth">
+            <thead>
+                <tr>
+                    <th>Телепортация</th>
+                    <th>Ночное зрение</th>
+                    <th>Левитация</th>
+                    <th>Год гождения</th>
+                    <th>Пол</th>
+                    <th>Количество конечностей</th>
+                    <th>Сверхспособности</th>
+                    <th>Биография</th>
+                    <th>Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    while ($row = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+                        print('<tr>');
+                        foreach ($row as $cell) {
+                            print('<td>' . $cell . '</td>');
+                        }
+                        print('</tr>');
+                    }
+                ?>
+            </tbody>
+        </table>
     <form action="" method="post">
         <table class="table is-hoverable is-fullwidth">
             <thead>
             <tr>
                 <th>Логин</th>
-                <th>Пароль</th>
                 <th>Имя</th>
                 <th>Email</th>
                 <th>Год гождения</th>
