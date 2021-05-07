@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 try {
-    $stmt = $db->query('SELECT * FROM users left join userProfile on users.login = userProfile.uid');
+    $stmt = $db->query('SELECT * FROM users right join userProfile on users.login = userProfile.uid');
     ?>
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1">
