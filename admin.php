@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 try {
     $stmt = $db->query(
-        'SELECT * FROM userProfile'
+        'SELECT users, us.name, us.email, us.age, us.age,us.sex,us.sex, us.limbs, us.powers, us.bio FROM users join userProfile us on users.login = userProfile.uid'
     );
     ?>
     <head>
@@ -50,6 +50,7 @@ try {
             <thead>
             <tr>
                 <th>Логин</th>
+                <th>Пароль</th>
                 <th>Имя</th>
                 <th>Email</th>
                 <th>Год гождения</th>
@@ -67,7 +68,7 @@ try {
                 foreach ($row as $cell) {
                     print('<td>' . $cell . '</td>');
                 }
-                print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="' . $row['uid'] . '">x</button></td>');
+                print('<td><button class="button is-info is-small is-danger is-light" name="remove" type="submit" value="' . $row['login'] . '">x</button></td>');
                 print('</tr>');
             }
             ?>
